@@ -496,20 +496,14 @@
   <div class="video-grid">
 
     <div class="video-card">
-      <div class="video-placeholder" id="ph1" ondragover="event.preventDefault()" ondrop="handleDrop(event,'v1','ph1')">
-        <input type="file" accept="video/*" onchange="handleFile(event,'v1','ph1')">
-        <div class="upload-icon">▶</div>
-        <span class="upload-label">Upload video or paste URL below</span>
-        <span class="upload-hint">MP4 / MOV — drag &amp; drop or click</span>
-      </div>
-      <div id="v1" class="video-wrapper" style="display:none">
-        <video controls></video>
+      <div class="video-wrapper">
+        <video controls>
+          <source src="video clase 7.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="video-info">
-        <h4>Task C — Assessment Video</h4>
-        <p>AI-generated video for NAT11287002 assessment, created using Pictory.</p>
-        <input class="video-url-input" id="url1" type="text" placeholder="Paste video URL (OneDrive, Google Drive, direct link...)">
-        <button class="video-url-btn" onclick="loadUrl('url1','v1','ph1')">Load URL</button>
+        <h4>Week 7 — AI Video: Social Media Content</h4>
+        <p>"Create Social Media Content Without Showing Your Face" — 58 seconds. Created with Pictory AI.</p>
       </div>
     </div>
 
@@ -524,9 +518,9 @@
         <video controls></video>
       </div>
       <div class="video-info">
-        <h4>Week 7 — Advanced Pictory Video</h4>
-        <p>"Create Social Media Content Without Showing Your Face" — 58 seconds.</p>
-        <input class="video-url-input" id="url2" type="text" placeholder="Paste video URL (OneDrive, Google Drive, direct link...)">
+        <h4>Task C — Assessment Video</h4>
+        <p>AI-generated video for NAT11287002 assessment, created using Pictory.</p>
+        <input class="video-url-input" id="url2" type="text" placeholder="Paste video URL...">
         <button class="video-url-btn" onclick="loadUrl('url2','v2','ph2')">Load URL</button>
       </div>
     </div>
@@ -540,50 +534,62 @@
   <div class="images-grid">
 
     <div class="image-card">
-      <div class="image-placeholder" id="iph1">
-        <input type="file" accept="image/*" onchange="handleImg(event,'iph1')">
-        <span class="img-icon">+</span>
-        <span class="img-label">Click to upload image</span>
+      <div class="image-placeholder" style="height:220px;overflow:hidden;">
+        <img src="Firefly_Gemini Flash_A human head seen from the side, inside- swirling galaxies, colored brushstrokes, tan 500677.png" alt="Human head with swirling galaxies" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
       </div>
       <div class="image-meta">
-        <h4>Image 1 — KWL Lion</h4>
-        <p>Photorealistic surreal lion · 800×800px · Adobe Firefly</p>
+        <h4>Human head — swirling galaxies</h4>
+        <p>AI-generated · Adobe Firefly · Diploma of AI</p>
       </div>
     </div>
 
     <div class="image-card">
-      <div class="image-placeholder" id="iph2">
-        <input type="file" accept="image/*" onchange="handleImg(event,'iph2')">
-        <span class="img-icon">+</span>
-        <span class="img-label">Click to upload image</span>
+      <div class="image-placeholder" style="height:220px;overflow:hidden;">
+        <img src="Firefly_GeminiFlash_An abstract human figure, barely defined, dissolving at the edges. From within, burst 217196.png" alt="Abstract human figure dissolving" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
       </div>
       <div class="image-meta">
-        <h4>Image 2 — "Imagine" Event</h4>
-        <p>Vibrant futuristic event promo · 1000×800px · Adobe Firefly</p>
+        <h4>Abstract figure dissolving</h4>
+        <p>AI-generated · Adobe Firefly · Diploma of AI</p>
       </div>
     </div>
 
     <div class="image-card">
-      <div class="image-placeholder" id="iph3">
-        <input type="file" accept="image/*" onchange="handleImg(event,'iph3')">
-        <span class="img-icon">+</span>
-        <span class="img-label">Click to upload image</span>
+      <div class="image-placeholder" style="height:220px;overflow:hidden;">
+        <img src="Figure_lost_in_cosmic_background_0e22ba47cb.jpeg" alt="Figure lost in cosmic background" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
       </div>
       <div class="image-meta">
-        <h4>Image 3 — Additional</h4>
-        <p>Additional AI-generated image</p>
+        <h4>Figure in cosmic background</h4>
+        <p>AI-generated · Diploma of AI</p>
       </div>
     </div>
 
     <div class="image-card">
-      <div class="image-placeholder" id="iph4">
-        <input type="file" accept="image/*" onchange="handleImg(event,'iph4')">
-        <span class="img-icon">+</span>
-        <span class="img-label">Click to upload image</span>
+      <div class="image-placeholder" style="height:220px;overflow:hidden;">
+        <img src="6e63ccfa-0565-4dd7-94d7-0c992ebb9791.jpeg" alt="AI generated image" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
       </div>
       <div class="image-meta">
-        <h4>Image 4 — Additional</h4>
-        <p>Additional AI-generated image</p>
+        <h4>AI-generated image</h4>
+        <p>AI-generated · Diploma of AI</p>
+      </div>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder" style="height:220px;overflow:hidden;">
+        <img src="musgo.jpeg" alt="Musgo" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+      </div>
+      <div class="image-meta">
+        <h4>Musgo</h4>
+        <p>Personal photography</p>
+      </div>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder" style="height:220px;overflow:hidden;">
+        <img src="puerto.jpeg" alt="Puerto" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+      </div>
+      <div class="image-meta">
+        <h4>Puerto</h4>
+        <p>Personal photography</p>
       </div>
     </div>
 
