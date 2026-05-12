@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Content Creation Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --accent: #c8f560;
+    --accent2: #7dd3fc;
+    --text: #f0ede8;
+    --muted: #888;
+    --border: rgba(255,255,255,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,245,96,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(200,245,96,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.05;
+    font-weight: 400;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin-bottom: 3rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0a;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: #d4f97a; }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.3); }
+
+  /* ABOUT */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; }
+  .skills-list {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .skill-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* PROJECTS */
+  .projects { background: var(--bg2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5px;
+    margin-top: 3rem;
+    background: var(--border);
+  }
+  .project-card {
+    background: var(--bg2);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .project-card:hover { background: var(--bg3); }
+  .project-num {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+  .project-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(200,245,96,0.08);
+    color: var(--accent);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* VIDEO SECTION */
+  .video-section {}
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .video-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+  }
+  .video-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .video-placeholder input[type="file"] {
+    position: absolute; inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%; height: 100%;
+  }
+  .upload-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    font-size: 1.2rem;
+  }
+  .upload-label { color: var(--muted); font-size: 0.85rem; }
+  .upload-hint { color: rgba(136,136,136,0.5); font-size: 0.75rem; }
+  .video-wrapper { width: 100%; aspect-ratio: 16/9; }
+  .video-wrapper video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-info { padding: 1.25rem 1.5rem; }
+  .video-info h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .video-info p { color: var(--muted); font-size: 0.85rem; }
+  .video-url-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.6rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+    outline: none;
+  }
+  .video-url-input:focus { border-color: rgba(200,245,96,0.3); }
+  .video-url-btn {
+    margin-top: 0.5rem;
+    background: var(--accent);
+    color: #0a0a0a;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* IMAGES */
+  .images-section { background: var(--bg2); }
+  .images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .image-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .image-placeholder {
+    width: 100%; height: 220px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .image-placeholder:hover { background: rgba(255,255,255,0.03); }
+  .image-placeholder input[type="file"] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer;
+    width: 100%; height: 100%;
+  }
+  .image-placeholder img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute; inset: 0;
+  }
+  .img-icon { color: var(--muted); font-size: 1.5rem; }
+  .img-label { color: var(--muted); font-size: 0.8rem; }
+  .image-meta { padding: 1rem 1.25rem; }
+  .image-meta h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .image-meta p { color: var(--muted); font-size: 0.8rem; }
+
+  /* CONTACT */
+  .contact-section {}
+  .contact-inner {
+    max-width: 600px;
+  }
+  .contact-inner p { color: var(--muted); margin-bottom: 2rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-field label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .form-field input,
+  .form-field textarea {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus { border-color: rgba(200,245,96,0.3); }
+  .form-field textarea { resize: vertical; min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section, .hero { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .video-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AI Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#images">Images</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Diploma of Artificial Intelligence — Greystone College</div>
+  <h1>Creating with <em>AI</em> — content, video & image</h1>
+  <p class="hero-sub">A professional portfolio showcasing AI-generated content built with Claude, Pictory, and Adobe Firefly.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#videos" class="btn btn-outline">Watch Videos</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>AI Consultant &amp; Content Creator</h2>
+      <p>I am currently completing the Diploma of Artificial Intelligence at Greystone College in Australia, specialising in using AI technologies to produce engaging content for professional and business contexts.</p>
+      <p>Throughout this course I have developed practical skills in generating written content, videos, and images using a range of AI platforms — learning how to prompt effectively, evaluate outputs critically, and refine results for real-world use.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Claude (Anthropic)</span>
+        <span class="skill-tag">Pictory AI</span>
+        <span class="skill-tag">Adobe Firefly</span>
+        <span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag">ElevenLabs</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">CapCut</span>
+        <span class="skill-tag">ComfyUI</span>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Weeks of training</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Content types mastered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">AI platforms used</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2026</div>
+        <div class="stat-label">Graduation year</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="section-label">Projects</div>
+  <h2>AI-generated work</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <h3>Written Content — AI Tips &amp; Tricks Script</h3>
+      <p>A 200–300 word presentation script for KWL Consulting's monthly all-staff meeting, covering practical AI tips and generated using Claude.</p>
+      <div class="project-tags">
+        <span class="project-tag">Task B</span>
+        <span class="project-tag">Claude</span>
+        <span class="project-tag">Written</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <h3>AI Video — Social Media Content</h3>
+      <p>A 58-second text-to-video created in Pictory on the topic "Create Social Media Content Without Showing Your Face", featuring AI voiceover and stock footage.</p>
+      <div class="project-tags">
+        <span class="project-tag">Task C</span>
+        <span class="project-tag">Pictory</span>
+        <span class="project-tag">Video</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <h3>AI Images — KWL Consulting</h3>
+      <p>Two AI-generated images for KWL Consulting: a photorealistic surreal lion (800×800px) and a vibrant futuristic image for the "Imagine" end-of-year event (1000×800px).</p>
+      <div class="project-tags">
+        <span class="project-tag">Task D</span>
+        <span class="project-tag">Adobe Firefly</span>
+        <span class="project-tag">Images</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <h3>Advanced Video — Pictory (Week 7)</h3>
+      <p>An advanced text-to-video project created during Week 7 of the course using Pictory's Script to Video feature, with custom visuals and AI voiceover.</p>
+      <div class="project-tags">
+        <span class="project-tag">Week 7</span>
+        <span class="project-tag">Pictory</span>
+        <span class="project-tag">Advanced</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="video-section">
+  <div class="section-label">Video content</div>
+  <h2>AI-generated videos</h2>
+  <div class="video-grid">
+
+    <div class="video-card">
+      <div class="video-placeholder" id="ph1" ondragover="event.preventDefault()" ondrop="handleDrop(event,'v1','ph1')">
+        <input type="file" accept="video/*" onchange="handleFile(event,'v1','ph1')">
+        <div class="upload-icon">▶</div>
+        <span class="upload-label">Upload video or paste URL below</span>
+        <span class="upload-hint">MP4 / MOV — drag &amp; drop or click</span>
+      </div>
+      <div id="v1" class="video-wrapper" style="display:none">
+        <video controls></video>
+      </div>
+      <div class="video-info">
+        <h4>Task C — Assessment Video</h4>
+        <p>AI-generated video for NAT11287002 assessment, created using Pictory.</p>
+        <input class="video-url-input" id="url1" type="text" placeholder="Paste video URL (OneDrive, Google Drive, direct link...)">
+        <button class="video-url-btn" onclick="loadUrl('url1','v1','ph1')">Load URL</button>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-placeholder" id="ph2" ondragover="event.preventDefault()" ondrop="handleDrop(event,'v2','ph2')">
+        <input type="file" accept="video/*" onchange="handleFile(event,'v2','ph2')">
+        <div class="upload-icon">▶</div>
+        <span class="upload-label">Upload video or paste URL below</span>
+        <span class="upload-hint">MP4 / MOV — drag &amp; drop or click</span>
+      </div>
+      <div id="v2" class="video-wrapper" style="display:none">
+        <video controls></video>
+      </div>
+      <div class="video-info">
+        <h4>Week 7 — Advanced Pictory Video</h4>
+        <p>"Create Social Media Content Without Showing Your Face" — 58 seconds.</p>
+        <input class="video-url-input" id="url2" type="text" placeholder="Paste video URL (OneDrive, Google Drive, direct link...)">
+        <button class="video-url-btn" onclick="loadUrl('url2','v2','ph2')">Load URL</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="images" class="images-section">
+  <div class="section-label">Visual content</div>
+  <h2>AI-generated images</h2>
+  <div class="images-grid">
+
+    <div class="image-card">
+      <div class="image-placeholder" id="iph1">
+        <input type="file" accept="image/*" onchange="handleImg(event,'iph1')">
+        <span class="img-icon">+</span>
+        <span class="img-label">Click to upload image</span>
+      </div>
+      <div class="image-meta">
+        <h4>Image 1 — KWL Lion</h4>
+        <p>Photorealistic surreal lion · 800×800px · Adobe Firefly</p>
+      </div>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder" id="iph2">
+        <input type="file" accept="image/*" onchange="handleImg(event,'iph2')">
+        <span class="img-icon">+</span>
+        <span class="img-label">Click to upload image</span>
+      </div>
+      <div class="image-meta">
+        <h4>Image 2 — "Imagine" Event</h4>
+        <p>Vibrant futuristic event promo · 1000×800px · Adobe Firefly</p>
+      </div>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder" id="iph3">
+        <input type="file" accept="image/*" onchange="handleImg(event,'iph3')">
+        <span class="img-icon">+</span>
+        <span class="img-label">Click to upload image</span>
+      </div>
+      <div class="image-meta">
+        <h4>Image 3 — Additional</h4>
+        <p>Additional AI-generated image</p>
+      </div>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder" id="iph4">
+        <input type="file" accept="image/*" onchange="handleImg(event,'iph4')">
+        <span class="img-icon">+</span>
+        <span class="img-label">Click to upload image</span>
+      </div>
+      <div class="image-meta">
+        <h4>Image 4 — Additional</h4>
+        <p>Additional AI-generated image</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="section-label">Contact</div>
+  <div class="contact-inner">
+    <h2>Get in touch</h2>
+    <p>Student at Greystone College — Diploma of Artificial Intelligence. Open to feedback and collaboration.</p>
+    <div class="contact-form">
+      <div class="form-field">
+        <label>Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea placeholder="Your message..."></textarea>
+      </div>
+      <div>
+        <button class="btn btn-primary" type="button">Send message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>AI Content Creation Portfolio — Greystone College 2026</span>
+  <span>NAT11287002 — Diploma of Artificial Intelligence</span>
+</footer>
+
+<script>
+function handleFile(e, vId, phId) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  showVideo(url, vId, phId);
+}
+
+function handleDrop(e, vId, phId) {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('video/')) return;
+  const url = URL.createObjectURL(file);
+  showVideo(url, vId, phId);
+}
+
+function loadUrl(inputId, vId, phId) {
+  const url = document.getElementById(inputId).value.trim();
+  if (!url) return;
+  showVideo(url, vId, phId);
+}
+
+function showVideo(url, vId, phId) {
+  const ph = document.getElementById(phId);
+  const vw = document.getElementById(vId);
+  ph.style.display = 'none';
+  vw.style.display = 'block';
+  vw.querySelector('video').src = url;
+}
+
+function handleImg(e, phId) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const ph = document.getElementById(phId);
+  ph.innerHTML = '<img src="' + url + '" alt="AI generated image"><input type="file" accept="image/*" onchange="handleImg(event,\'' + phId + '\')">';
+}
+</script>
+
+</body>
+</html>
